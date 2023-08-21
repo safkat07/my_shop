@@ -5,10 +5,11 @@ function clickCard(target) {
 
   const cardTitle =
     target.parentNode.childNodes[1].childNodes[3].childNodes[3].innerText;
+    const count = cardClickedContainer.childElementCount
 
   const li = document.createElement("li");
   // li.innerText = cardTitle;
-  li.innerText = cardTitle;
+  li.innerHTML = `${count+1}. ${cardTitle}`
 
   cardClickedContainer.appendChild(li);
 
