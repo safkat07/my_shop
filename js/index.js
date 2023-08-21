@@ -1,13 +1,15 @@
 let sumOfTotalPrice = 0;
+
 function clickCard(target) {
-  const cardClickedContainer = document.getElementById("select-container");
+  const cardClickedContainer = document.getElementById("select-container-list");
 
   const cardTitle =
     target.parentNode.childNodes[1].childNodes[3].childNodes[3].innerText;
 
-  //   console.log(cardTitle);
   const li = document.createElement("li");
+  // li.innerText = cardTitle;
   li.innerText = cardTitle;
+
   cardClickedContainer.appendChild(li);
 
   const cardPrice =
@@ -20,6 +22,14 @@ function clickCard(target) {
   const TotalPrice = document.getElementById("total-price");
   TotalPrice.innerText = sumOfTotalPrice.toFixed(2);
   const couponButton = document.getElementById("cuopon-btn");
+
+  //make purchase button code
+  const buyButton = document.getElementById("purchase-btn");
+  if (sumOfTotalPrice > 0) {
+    buyButton.removeAttribute("disabled");
+  }
+
+  //product copoun part apply button
   if (sumOfTotalPrice >= 200) {
     couponButton.removeAttribute("disabled");
     console.log("touched");
@@ -27,6 +37,8 @@ function clickCard(target) {
     couponButton.setAttribute("disabled");
   }
 }
+
+//purchase button
 
 //coupon button
 document.getElementById("cuopon-btn").addEventListener("click", function () {
@@ -49,9 +61,9 @@ document.getElementById("cuopon-btn").addEventListener("click", function () {
     finalTotalPrice.innerText = (
       sumOfTotalPrice - sumOfTotalDiscountPrice
     ).toFixed(2);
-  }
-  else{
-    alert("Enter The Right Code")
-    couponInputFiled.value = ""
+    couponInputFiled.value = "";
+  } else {
+    alert("Enter The Right Code");
+    couponInputFiled.value = "";
   }
 });
